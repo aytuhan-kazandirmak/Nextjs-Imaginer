@@ -1,10 +1,12 @@
 "use client";
+import { useHomePage } from "../useHomePage";
 import { EXAMPLES } from "./contstants";
 import styles from "./style.module.scss";
 import Tag from "@/components/tag";
 import Image from "next/image";
 const Examples = () => {
-  const handleCopy = () => {};
+  const { changePrompt } = useHomePage();
+
   return (
     <div className={styles.examples}>
       {EXAMPLES.map((example) => (
@@ -13,7 +15,9 @@ const Examples = () => {
           <Tag
             title="Copy"
             className={styles.copyButton}
-            onClick={handleCopy}
+            onClick={() => {
+              changePrompt(example.prompt);
+            }}
           />
           <Image src={example.image} alt={example.prompt} fill />
         </div>
